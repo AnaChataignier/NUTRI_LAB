@@ -43,7 +43,7 @@ def cadastro(request):
 
 
             messages.add_message(request, constants.SUCCESS, 'Cadastrado com sucesso!')
-            return redirect('/login')
+            return redirect('/')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
             return redirect('/cadastro')    
@@ -62,7 +62,7 @@ def login(request):
         
         if not usuario:
             messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
-            return redirect('/login')
+            return redirect('/')
         else:
             auth.login(request, usuario)
             return redirect('/pacientes')
@@ -76,11 +76,11 @@ def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
     if token.ativo:
         messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
-        return redirect('/login')
+        return redirect('/')
     user = User.objects.get(username=token.user.username)
     user.is_active = True
     user.save()
     token.ativo = True
     token.save()
     messages.add_message(request, constants.SUCCESS, 'Conta ativada com sucesso')
-    return redirect('/login')
+    return redirect('/')
