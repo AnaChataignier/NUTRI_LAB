@@ -26,7 +26,7 @@ def cadastro(request):
         username = username.replace(" ", "")
         
         if not password_is_valid(request, senha, confirmar_senha):
-            return redirect( '/auth/cadastro')
+            return redirect( '/cadastro')
         try:
             user = User.objects.create_user(username=username,
                                             email=email,
@@ -39,14 +39,14 @@ def cadastro(request):
             ativacao.save()
             
             path_template = os.path.join(settings.BASE_DIR, 'autenticacao/templates/emails/cadastro_confirmado.html')
-            email_html(path_template, 'Cadastro confirmado', [email,], username=username, link_ativacao=f"127.0.0.1:8000/auth/ativar_conta/{token}")
+            email_html(path_template, 'Cadastro confirmado', [email,], username=username, link_ativacao=f"127.0.0.1:8000/ativar_conta/{token}")
 
 
             messages.add_message(request, constants.SUCCESS, 'Cadastrado com sucesso!')
-            return redirect('/auth/login')
+            return redirect('/login')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
-            return redirect('/auth/cadastro')    
+            return redirect('/cadastro')    
 
 def login(request):
     if request.method == "GET":
@@ -62,7 +62,7 @@ def login(request):
         
         if not usuario:
             messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
-            return redirect('/auth/login')
+            return redirect('/login')
         else:
             auth.login(request, usuario)
             return redirect('/pacientes')
@@ -76,11 +76,11 @@ def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
     if token.ativo:
         messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
-        return redirect('/auth/login')
+        return redirect('/login')
     user = User.objects.get(username=token.user.username)
     user.is_active = True
     user.save()
     token.ativo = True
     token.save()
     messages.add_message(request, constants.SUCCESS, 'Conta ativada com sucesso')
-    return redirect('/auth/login')
+    return redirect('/login')
