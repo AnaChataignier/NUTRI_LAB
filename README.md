@@ -1,7 +1,7 @@
 <h1>NUTRILAB</h1> 
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=react&message=framework&color=blue&style=for-the-badge&logo=REACT"/>
+  <img src="https://img.shields.io/static/v1?label=django&message=framework&color=blue&style=for-the-badge&logo=DJANGO"/>
 </p>
 
 ### Tópicos 
@@ -12,7 +12,7 @@
 
 :small_blue_diamond: [Deploy da Aplicação](#deploy-da-aplicação-dash)
 
-... 
+
 
 
 ## Descrição do projeto 
@@ -34,25 +34,52 @@ Logo após o login, o profissional nutricionista vai acessar a página com seus 
 ![Descrição da imagem](pacientes.png)
 
 
-
-
 :heavy_check_mark: Funcionalidade 2  
+
+Podendo cadastrar novos pacientes
+
+![Descrição da imagem](cadastropacientenutri.png)
+
 
 :heavy_check_mark: Funcionalidade 3  
 
+Cadastrar dados pessoais e dados laboratoriais 
+
+![Descrição da imagem](addados.png)
+
 :heavy_check_mark: Funcionalidade 4  
+
+Visualizar os dados cadastrados em suas respectivas datas.
+Mostrando também um gráfico com a variação de peso desse paciente ao longo do tempo.
+
+![Descrição da imagem](dados1.png)
+
+:heavy_check_mark: Funcionalidade 5  
+
+Cadastrar um plano alimentar para cada paciente
+
+![Descrição da imagem](addrefeicao.png)
+
+:heavy_check_mark: Funcionalidade 6
+
+E cadastrar diferentes opções de refeições para esse paciente escolher 
+
+![Descrição da imagem](addopcao.png)
+
+
+
+
 
 ## Deploy da Aplicação :dash:
 
-> Link do deploy da aplicação: https://certificates-for-everyone-womakerscode.netlify.app/
+O deploy foi realizado pela AWS 
+
+> Link do deploy da aplicação: http://18.221.247.75:8000/
 >  
 
 ## Linguagens, dependencias e libs utilizadas:
 
-- [React](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
-- [React PDF](https://react-pdf.org/)
-
-...
+- Python
+- Django
 
 
-Veja aqui [o resultado final](http://18.221.247.75:8000/)
